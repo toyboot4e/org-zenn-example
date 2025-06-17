@@ -1,0 +1,28 @@
+#+TITLE: Org Article
+#+GFM_TAGS: org
+#+GFM_CUSTOM_FRONT_MATTER: :emoji 🗿 :type tech
+#+GFM_CUSTOM_FRONT_MATTER: :published false
+
+記事のテスト
+
+* 参考
+
+#+BEGIN_EXPORT markdown
+https://zenn.dev/conao3/articles/ox-zenn-usage
+#+END_EXPORT
+
+* Markdown export
+
+- a
+  b
+
+#+BEGIN_EXPORT markdown
+- a
+  b
+#+END_EXPORT
+
+#+ATTR_HTML: :x-type message
+#+BEGIN_QUOTE
+Org で表現できない見た目であっても、 Markdown を直接埋め込むことで作成できます。
+#+END_QUOTE
+
