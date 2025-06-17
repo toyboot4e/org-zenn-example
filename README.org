@@ -2,7 +2,7 @@
 
 ** Emacs コマンド
 
-*** 記事のビルド
+*** 記事のビルド (Org -> Markdown)
 
 #+BEGIN_SRC sh
 $ emacs -q --script elisp/export-org-article.el ./org-articles/my-org-article.org
@@ -11,7 +11,7 @@ $ # または
 $ just article ./org-articles/my-org-article.org
 #+END_SRC
 
-*** 本のビルド
+*** 本のビルド (Org -> Markdown)
 
 #+BEGIN_SRC sh
 $ emacs -q --script elisp/export-org-book.el ./org-books/my-org-book.org
