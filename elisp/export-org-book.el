@@ -12,10 +12,10 @@
    :ensure t)
 
 (require 'org)
-(require 'ox-zenn)
 
 (with-temp-buffer
   (insert-file-contents (car argv))
+  (org-mode)
   (let* (;; */zenn/org-books/my-org-book.el
          (src-file (expand-file-name (car argv)))
          ;; */zenn/org-books
@@ -26,6 +26,21 @@
          (book-name (file-name-sans-extension (file-name-nondirectory src-file)))
          ;; */zenn/books/my-org-book/
          (book-dir (concat zenn-dir "books/" book-name "/")))
-    (print book-dir)))
+    (print book-dir)
+
+    (unless (file-directory-p book-dir)
+      (make-directory book-dir t))
+    (cd book-dir)
+
+    (let ((org-confirm-babel-tangle nil))
+      (org-babel-tangle))
+
+    (org-map-entries
+     (lambda ()
+       (let ((title (org-entry-get nil "ITEM")))
+         (unless (string= (org-get-todo-state) "TODO")
+           ;; (message title)
+           (org-zenn-export-to-markdown nil t))))
+     "LEVEL=1")))
 
 
