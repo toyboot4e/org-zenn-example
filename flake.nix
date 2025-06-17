@@ -11,8 +11,8 @@
       {
         devShells.default = with pkgs; mkShell {
           packages = [
-	    emacs
-	    zenn-cli
+            emacs
+            zenn-cli
           ];
         };
       });
