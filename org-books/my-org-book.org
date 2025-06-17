@@ -1,0 +1,50 @@
+#+TITLE: Org Book
+
+* TODO メタデータ
+
+** =config.yaml=
+
+#+NAME: config.yaml
+#+BEGIN_SRC yaml
+title: "My Org Book"
+summary: "Greate Org"
+topics: ["org"]
+published: true
+price: 0
+chapters:
+#+END_SRC
+
+** =print-zenn-headings=
+
+#+NAME: print-zenn-headings
+#+BEGIN_SRC elisp :results output
+(org-map-entries
+  (lambda ()
+    (let* ((title (org-entry-get nil "EXPORT_FILE_NAME"))
+           (is-draft (string= (org-get-todo-state) "TODO")))
+      (when (and title (not is-draft))
+        (princ (concat "- " title "\n")))))
+  "LEVEL=1")
+#+END_SRC
+
+* Heading 1
+:PROPERTIES:
+:EXPORT_FILE_NAME: chapter-1
+:END:
+
+テスト
+
+* TODO Heading 2
+:PROPERTIES:
+:EXPORT_FILE_NAME: chapter-2
+:END:
+
+テスト
+
+* Heading 3
+:PROPERTIES:
+:EXPORT_FILE_NAME: chapter-3
+:END:
+
+テスト
+
