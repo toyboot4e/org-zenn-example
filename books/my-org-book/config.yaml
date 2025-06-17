@@ -1,0 +1,8 @@
+title: "My Org Book"
+summary: "Greate Org"
+topics: ["org"]
+published: true
+price: 0
+chapters:
+- chapter-1
+- chapter-3

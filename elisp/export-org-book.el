@@ -13,6 +13,17 @@
 
 (require 'org)
 
+(defun collect-zenn-headings ()
+  (mapconcat 'identity
+    (org-map-entries
+      (lambda ()
+        (let* ((title (org-entry-get nil "EXPORT_FILE_NAME"))
+               (is-draft (string= (org-get-todo-state) "TODO")))
+          (when (and title (not is-draft))
+            (concat "- " title "\n"))))
+      "LEVEL=1")
+    ""))
+
 (with-temp-buffer
   (insert-file-contents (car argv))
   (org-mode)
@@ -32,15 +43,21 @@
       (make-directory book-dir t))
     (cd book-dir)
 
-    (let ((org-confirm-babel-tangle nil))
-      (org-babel-tangle))
+    ;; config.yaml
+    (setq org-confirm-babel-evaluate nil)
+    (org-babel-goto-named-src-block "config.yaml")
+    (let ((yaml (org-element-property :value (org-element-at-point)))
+          (headings (collect-zenn-headings)))
+      (with-temp-file "config.yaml"
+        (insert (concat yaml headings)))))
 
+    ;; Chapters
     (org-map-entries
      (lambda ()
        (let ((title (org-entry-get nil "ITEM")))
          (unless (string= (org-get-todo-state) "TODO")
            ;; (message title)
            (org-zenn-export-to-markdown nil t))))
-     "LEVEL=1")))
+     "LEVEL=1"))
 
 
