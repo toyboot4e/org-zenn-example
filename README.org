@@ -1,0 +1,42 @@
+* org-zenn-example
+
+** =zenn-cli=
+
+素の =zenn-cli= の使い方
+
+#+BEGIN_SRC sh
+$ npm install zenn
+#+END_SRC
+
+*** 記事の作成
+
+#+BEGIN_SRC sh
+$ npx zenn new:article --slug example-article
+created: articles/example-article.md
+#+END_SRC
+
+*** 本の作成
+
+#+BEGIN_SRC sh
+$ npx zenn new:book --slug example-book
+created: books/example-book/config.yaml
+created: books/example-book/example1.md
+created: books/example-book/example2.md
+#+END_SRC
+
+*** ファイル構成
+
+#+BEGIN_SRC txt
+.
+├── articles
+│   └── example-article.md
+└── books/example-book
+    ├── config.yaml
+    ├── example1.md
+    └── example2.md
+#+END_SRC
+
+** 参考
+
+- [[https://zenn.dev/zenn/articles/zenn-cli-guide][Zenn CLIで記事・本を管理する方法]]
+
