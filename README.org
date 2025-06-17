@@ -36,7 +36,35 @@ created: books/example-book/example2.md
     └── example2.md
 #+END_SRC
 
-** 参考
+*** プレビュー
+
+#+BEGIN_SRC sh
+$ npx zenn preview --port 8002
+👀 Preview: http://localhost:8002
+#+END_SRC
+
+** Emacs コマンド
+
+*** 記事のビルド
+
+#+BEGIN_SRC sh
+$ emacs -q --script elisp/export-org-article.el ./org-articles/my-org-article.org
+
+$ # または
+$ just article ./org-articles/my-org-article.org
+#+END_SRC
+
+*** 本のビルド
+
+#+BEGIN_SRC sh
+$ emacs -q --script elisp/export-org-book.el ./org-books/my-org-book.org
+
+$ # または
+$ just book ./org-books/my-org-book.org
+#+END_SRC
+
+*** 参考
 
 - [[https://zenn.dev/zenn/articles/zenn-cli-guide][Zenn CLIで記事・本を管理する方法]]
+- [[https://zenn.dev/conao3/articles/ox-zenn-usage][org-modeドキュメントからZenn Flavored Markdownを生成するox-zennの使い方]]
 
